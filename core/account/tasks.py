@@ -24,7 +24,7 @@ def send_congratulations_email(email):
     try:
         email_sender = SendNotificationEmail(subject, email, message)
         email_sender.send_notification_email()
-        return 'Task Excuted Successfully.'
+        return 'Task Executed Successfully.'
     except Exception as e:
         return str(e)
 
@@ -32,11 +32,11 @@ def send_congratulations_email(email):
 @shared_task()
 def send_reset_password_email(email, reset_password_link):
     subject = 'Reset your password'
-    message = f'Click this link to rest your password: {reset_password_link}'
+    message = f'Click this link to reset your password: {reset_password_link}'
     try:
         email_sender = SendNotificationEmail(subject, email, message)
         email_sender.send_notification_email()
-        return 'Task Excute Successfully.'
+        return 'Task Execute Successfully.'
     except Exception as e:
         return str(e)
 
@@ -44,10 +44,10 @@ def send_reset_password_email(email, reset_password_link):
 @shared_task()
 def send_email_after_reset(email):
     subject = 'Password Reset Successfully.'
-    message = 'We could like to tell you your password changed successfully.'
+    message = 'We could tell you your password changed successfully.'
     try:
         email_sender = SendNotificationEmail(subject, email, message)
         email_sender.send_notification_email()
-        return 'Task Excute Successfully.'
+        return 'Task Execute Successfully.'
     except Exception as e:
         return str(e)
