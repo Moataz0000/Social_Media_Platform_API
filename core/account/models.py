@@ -60,6 +60,7 @@ class Profile(models.Model):
     avater = models.ImageField(upload_to='profile/avaters/', blank=True, null=True)
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now_add=True)
+    is_private = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return str(f'Profile - {self.user.name}')
