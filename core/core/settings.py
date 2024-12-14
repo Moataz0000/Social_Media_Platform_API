@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
     # Apps
     'account',
+    'following',
 
     # 3Party
     'rest_framework',

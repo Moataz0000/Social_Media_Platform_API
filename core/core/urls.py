@@ -31,7 +31,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 
-apps_to_include = ['account']
+apps_to_include = ['account', 'following']
 
 for app in apps_to_include:
     urlpatterns.append(path(f'api/{app}/', include(f'{app}.urls', namespace=f'{app}')))
