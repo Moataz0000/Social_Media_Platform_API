@@ -18,17 +18,3 @@ class Follow(models.Model):
 
 
 
-class Post(models.Model):
-    VISIBILITY_CHOICES = [
-        ('public', 'Public'),
-        ('followers', 'Followers Only'),
-        ('private', 'Private')
-    ]
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-    visibility = models.CharField(max_length=10, choices=VISIBILITY_CHOICES, default='public')
-
-    def __str__(self) -> str:
-        return f'{self.user.name} - {self.content[:20]}'
