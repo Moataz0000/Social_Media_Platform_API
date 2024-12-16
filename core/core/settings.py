@@ -32,12 +32,14 @@ INSTALLED_APPS = [
     # Apps
     'account',
     'following',
+    'posts',
 
     # 3Party
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
+    'channels',
 
 ]
 
@@ -133,12 +135,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+CACHES = {
+    'default': {
+        'BACKEND': config('BACKEND'),
+        'LOCATION': config('LOCATION'),
+        'OPTIONS': {
+            'CLIENT_CLASS': config('CLIENT_CLASS'),
+        }
+    }
+}
+
+
+
 AUTH_USER_MODEL = 'account.User'
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=10),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=12),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
     'AUTH_HEADER_TYPES': ('Bearer',),}
@@ -165,3 +179,16 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
 
 META_API_TOKEN = config('META_API_TOKEN')
+
+
+
+ASGI_APPLICATION = 'core.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
